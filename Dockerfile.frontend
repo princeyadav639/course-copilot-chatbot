@@ -1,0 +1,33 @@
+# 1. Select Python base image
+FROM python:3.11-slim
+
+# 2. Set working directory
+WORKDIR /app
+
+# 3. Python environment settings
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# 4. Copy requirements
+COPY requirements.txt .
+
+# 5. Install dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# 6. Copy application code
+COPY app/ ./app/
+
+# 7. Create a non-root user
+RUN groupadd --system appgroup && \
+    useradd --system --gid appgroup --create-home appuser && \
+    chown -R appuser:appgroup /app
+
+# 8. Switch to non-root user
+USER appuser
+
+# 9. Expose Gradio port
+EXPOSE 7860
+
+# 10. Start Gradio
+CMD ["python", "-c", "from app.frontend.gradio_app import demo; demo.launch(server_name='0.0.0.0', server_port=7860)"]

@@ -1,0 +1,42 @@
+# Environment variables and secrets
+.env
+.env.*
+# Python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+myenv/
+
+# IDE and editor files
+.vscode/
+.idea/
+
+# Uploaded PDF files
+storage/uploads/*
+!storage/uploads/.gitkeep
+
+# Vector database
+storage/vector_db/*
+!storage/vector_db/.gitkeep
+
+# Logs
+*.log
+logs/
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp

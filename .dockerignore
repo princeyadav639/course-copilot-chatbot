@@ -1,0 +1,47 @@
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+myenv/
+.venv/
+venv/
+env/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Git files
+.git/
+.gitignore
+
+# IDE settings
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Local storage data
+storage/
+
+# Temporary files
+tmp/
+temp/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Docker files
+docker-compose.override.yml

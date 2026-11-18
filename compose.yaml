@@ -1,0 +1,53 @@
+services:
+
+  # --------------------------------
+  # 1. FastAPI Backend
+  # --------------------------------
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    env_file:
+      - .env
+
+    environment:
+      ENVIRONMENT: development
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - course_copilot_storage:/app/storage
+
+    restart: unless-stopped
+
+
+  # --------------------------------
+  # 2. Gradio Frontend
+  # --------------------------------
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+
+    environment:
+      API_BASE_URL: http://api:8000
+
+    ports:
+      - "7860:7860"
+
+    depends_on:
+      - api
+
+    restart: unless-stopped
+
+
+# --------------------------------
+# 3. Persistent Storage
+# --------------------------------
+
+volumes:
+  course_copilot_storage:
